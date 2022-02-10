@@ -1,0 +1,17 @@
+{
+    "dev": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "fantasy_worlds",
+      "user": "mystery_user",
+      "password": "mystery123"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "127.0.0.1",
+      "database": "fantasy_worlds_test",
+      "user": "mystery_user",
+      "password": "mystery123"
+    }
+  }
+  
