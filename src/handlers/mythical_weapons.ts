@@ -10,13 +10,25 @@ const store = new MythicalWeaponStore()
 
 // this a handler for the index model method 
 const index = async (req: express.Request, res: express.Response) =>{
-    const weapons = await store.index()
-    res.json(weapons)
+    try {
+        const weapons = await store.index()
+         res.json(weapons)
+    } catch (error) {
+        res.status(400)
+        res.json(`this request couldn't be sent : ${error}`)
+    }
+    
 }
 
 const show = async (req: express.Request, res: express.Response) => {
+   try {
     const weapon = await store.show(req.params.id)
     res.json(weapon)
+   } catch (error) {
+    res.status(400)
+    res.json(`this id isn't found: ${error}`) 
+   }
+   
  }
  
  const create = async (req:express.Request, res: express.Response) => {

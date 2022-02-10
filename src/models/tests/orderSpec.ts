@@ -25,7 +25,6 @@ describe("order model", () => {
       });
 
     it("should test that index method returns a list of orders", async () => {
-      await store.delete("1"); 
       const result = await store.index();
         expect(result).toEqual([]);
     });
@@ -44,16 +43,16 @@ describe("order model", () => {
     it('index method should return a list of orders', async () => {
         const result = await store.index();
         expect(result).toEqual([{
-          id: 2,
+          id: 1,
           status: 'open',
           user_id:2
         }]);
       });
     
     it('show method should return the correct order', async () => {
-        const result = await store.show("2");
+        const result = await store.show("1");
         expect(result).toEqual({
-            id: 2,
+            id: 1,
           status: 'open',
           user_id:2
         });
@@ -70,7 +69,7 @@ describe("order model", () => {
       });
 */
    it('delete method should remove the order', async () => {
-        await store.delete("2");
+        await store.delete("1");
          const result = await store.index()
          expect(result).toEqual([]);
     });

@@ -27,7 +27,18 @@ export class UserAccount {
             throw new Error(`Can't get weapons: ${error}`)
         }
     }
-
+    //show a certain record
+    async show(id: string): Promise<User> {
+        try {
+           const conn = await client.connect() 
+           const sql = 'SELECT * FROM users WHERE id=($1)' 
+           const result = await conn.query(sql, [id])
+           conn.release()
+           return result.rows[0]
+        } catch (error) {
+            throw new Error(`can't find ${id}: ${error}`)
+        }
+    }
 async create(u: User): Promise<User> {
     try{
         const conn = await client.connect()

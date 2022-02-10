@@ -9,10 +9,26 @@ dotenv.config()
 const account = new UserAccount()
 
 const index = async (req: express.Request, res: express.Response) =>{
-    const weapons = await account.index()
-    res.json(weapons)
+    try {
+        const weapons = await account.index()
+       res.json(weapons)
+    } catch (error) {
+        res.status(400)
+        res.json(`this request couldn't be sent : ${error}`)
+    }
+    
 }
 
+const show = async (req: express.Request, res: express.Response) => {
+    try {
+        const weapon = await account.show(req.params.id)
+    res.json(weapon)
+    } catch (error) {
+        res.status(400)
+        res.json(`this id isn't found: ${error}`)
+    }
+ }
+ 
 const create =  async (req: express.Request, res: express.Response) => {
     try {
         const user: User ={
@@ -35,7 +51,8 @@ const authenticate = async (req: express.Request, res: express.Response) => {
         username: req.body.username ,
         password_digest: req.body.password 
       }
-      try{
+
+      try{   
     const check = await account.authenticate(user.username, user.password_digest)
     if (check != null){
         let token = jwt.sign({user: {
@@ -44,7 +61,6 @@ const authenticate = async (req: express.Request, res: express.Response) => {
             password_digest : check.password_digest
         }}, process.env.TOKEN_SECRET as string);
         res.json(token)
-       
     }
       }catch(err){
           res.status(401)
@@ -101,6 +117,7 @@ const destroy = async (req: express.Request, res: express.Response) => {
 
 const users_routes = (app: express.Application) => {
     app.get('/users',index)
+    app.get('/users/:id',show)
     app.post('/users', create)
     app.post('/users/authentication', authenticate)
     app.put('/users/:id', update)

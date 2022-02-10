@@ -8,32 +8,33 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ### mythical_weapons endpoints
 
- a INDEX method: '/mythical_weapons' [GET]
- a SHOW method: '/mythical_weapons/:id' [GET]
- a CREATE method: '/mythical_weapons' [POST]
- a EDIT method: '/mythical_weapons/:id' [PUT]
- a DELETE method: '/mythical_weapons/:id' [DELETE]
+a INDEX method: '/mythical_weapons' [GET]
+a SHOW method: '/mythical_weapons/:id' [GET]
+a CREATE method: '/mythical_weapons' [POST]
+a EDIT method: '/mythical_weapons/:id' [PUT]
+a DELETE method: '/mythical_weapons/:id' [DELETE]
 
 ### users endpoints
 
- a INDEX method: '/users' [GET]
- a AUTHENTICATE method: '/users/authentication' [POST]
- a CREATE method: '/users' [POST]
- a UPDATE method: '/users/:id' [PUT]
- a DELETE method: '/users/:id' [DELETE]
+a INDEX method: '/users' [GET]
+a SHOW method: '/users/:id' [GET]
+a AUTHENTICATE method: '/users/authentication' [POST]
+a CREATE method: '/users' [POST]
+a UPDATE method: '/users/:id' [PUT]
+a DELETE method: '/users/:id' [DELETE]
 
 ### orders endpoints
 
- a INDEX method: '/orders' [GET]
- a SHOW method: '/orders/:id' [GET]
- a CREATE method: '/orders' [POST]
- a ADD WEAPON method: '/orders/:id/weapons' [POST]
+a INDEX method: '/orders' [GET]
+a SHOW method: '/orders/:id' [GET]
+a CREATE method: '/orders' [POST]
+a ADD WEAPON method: '/orders/:id/weapons' [POST]
 
 ### Dashboard endpoints
 
- a WEAPONINORDERS method: '/weapons_in_orders' [GET]
- a USERSWHOORDERS method: '/users_who_orders' [GET]
- a FIVEEXPENSIVEWEAPONS method: '/five_expensive_weapons' [GET]
+a WEAPONINORDERS method: '/weapons_in_orders' [GET]
+a USERSWHOORDERS method: '/users_who_orders' [GET]
+a FIVEEXPENSIVEWEAPONS method: '/five_expensive_weapons' [GET]
 
 #### mythical_weapons
 
@@ -45,31 +46,31 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Users
 
-- Index 
+- Index
+- Show
 - authenticate [token required]
 - Create [token required]
 - update [token required]
-- delete [token required] 
+- delete [token required]
 
 #### Orders
 
 - Index
 - Show
-- Create 
-- delete
-- edit
-- add weapon 
+- Create [token required]
+- delete [token required]
+- edit [token required]
+- add weapon [token required]
 
 ## Data Shapes
 
 #### mythical_weapons
 
-- id 
+- id
 - name
 - type
 - weight
--price 
-
+  -price
 
 #### User
 
@@ -87,10 +88,15 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 - id
 - order_id (foreign key to orders id) of each order
-- weapon_id  (foreign key to mythical_weapons id)of each weapon in the order
+- weapon_id (foreign key to mythical_weapons id)of each weapon in the order
 - quantity of each weapon in the order
 
+#### Database port
+
+- 5432
+
 ### ENVIRONMENT VARIABLES
+
 ENV
 POSTGRES_HOST
 POSTGRES_DB

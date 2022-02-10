@@ -12,7 +12,7 @@ const weapon = new MythicalWeaponStore()
 const request = supertest(app);
 
 describe('Testing my endpoint for orders responses', (): void => {
- it('checks the create order method endpoint', async () => {
+ it('checks the create order method endpoint fail as no authentication passed', async () => {
      await account.create({
         username: "hayah1999",
         password_digest: "hayah1999"
@@ -22,7 +22,7 @@ describe('Testing my endpoint for orders responses', (): void => {
     status: "open",
     user_id: 1
 })
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(401);
  });
 
  it('checks the index order method endpoint', async () => {
@@ -34,7 +34,7 @@ describe('Testing my endpoint for orders responses', (): void => {
   const response = await request.get('/orders/1')
  expect(response.status).toBe(200);
  });
- it('checks the add weapon method endpoint', async () => {
+ it('checks the add weapon method endpoint fail as no authentication passed', async () => {
     await weapon.create({
         name: 'AKM',
         type: 'assault rifle',
@@ -53,7 +53,7 @@ function result () {
 }
 result()
 conn.release()
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(401);
  })
 })
  
