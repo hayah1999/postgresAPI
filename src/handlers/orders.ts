@@ -8,6 +8,16 @@ dotenv.config()
 const store = new OrderStore()
 const index = async (req: express.Request, res: express.Response) => {
     try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch(err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
+
+    try {
         const orders = await store.index()
         res.json(orders) 
     } catch (error) {
@@ -17,6 +27,16 @@ const index = async (req: express.Request, res: express.Response) => {
 }
 
 const show = async (req: express.Request, res: express.Response) => {
+    try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch(err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
+
     try {
         const weapon = await store.show(req.params.id)
         res.json(weapon)

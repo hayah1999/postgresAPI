@@ -16,13 +16,13 @@ describe('Testing my endpoint for users responses', (): void => {
   expect(response.status).toBe(200);
  });
 
- it('checks the index user method endpoint', async () => {
+ it('checks the index user method endpoint fail as no authentication passed', async () => {
    const response = await request.get('/users')
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(401);
  });
- it('checks the show weapon method endpoint', async () => {
+ it('checks the show weapon method endpoint fail as no authentication passed', async () => {
   const response = await request.get('/users/1')
- expect(response.status).toBe(200);
+ expect(response.status).toBe(401);
  });
 
  it('checks the update user method endpoint fail as no authentication passed', async () => {

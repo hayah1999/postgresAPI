@@ -10,6 +10,16 @@ const account = new UserAccount()
 
 const index = async (req: express.Request, res: express.Response) =>{
     try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch(err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
+
+    try {
         const weapons = await account.index()
        res.json(weapons)
     } catch (error) {
@@ -20,6 +30,16 @@ const index = async (req: express.Request, res: express.Response) =>{
 }
 
 const show = async (req: express.Request, res: express.Response) => {
+    try {
+        const authorizationHeader = req.headers.authorization as string
+        const token = authorizationHeader.split(' ')[1]
+        jwt.verify(token, process.env.TOKEN_SECRET as string)
+    } catch(err) {
+        res.status(401)
+        res.json('Access denied, invalid token')
+        return
+    }
+
     try {
         const weapon = await account.show(req.params.id)
     res.json(weapon)

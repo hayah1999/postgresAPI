@@ -46,8 +46,8 @@ a FIVEEXPENSIVEWEAPONS method: '/five_expensive_weapons' [GET]
 
 #### Users
 
-- Index
-- Show
+- Index [token required]
+- Show [token required]
 - authenticate [token required]
 - Create [token required]
 - update [token required]
@@ -55,8 +55,8 @@ a FIVEEXPENSIVEWEAPONS method: '/five_expensive_weapons' [GET]
 
 #### Orders
 
-- Index
-- Show
+- Index [token required]
+- Show [token required]
 - Create [token required]
 - delete [token required]
 - edit [token required]
@@ -70,7 +70,7 @@ a FIVEEXPENSIVEWEAPONS method: '/five_expensive_weapons' [GET]
 - name
 - type
 - weight
-  -price
+- price
 
 #### User
 

@@ -25,14 +25,14 @@ describe('Testing my endpoint for orders responses', (): void => {
   expect(response.status).toBe(401);
  });
 
- it('checks the index order method endpoint', async () => {
+ it('checks the index order method endpoint failed as no authentication passed', async () => {
    const response = await request.get('/orders')
-  expect(response.status).toBe(200);
+  expect(response.status).toBe(401);
  });
 
- it('checks the show order method endpoint', async () => {
+ it('checks the show order method endpoint fail as no authentication passed', async () => {
   const response = await request.get('/orders/1')
- expect(response.status).toBe(200);
+ expect(response.status).toBe(401);
  });
  it('checks the add weapon method endpoint fail as no authentication passed', async () => {
     await weapon.create({
